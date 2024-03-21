@@ -6,6 +6,7 @@ import com.example.urlshortener.repository.UrlShortenerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class UrlShortenerService {
             if(urlShortenerRepository.existsByShortKey(newHashEntry)){
                 newHashEntry = DUPLICATE_KEY.concat(String.valueOf(newHashEntry)).hashCode();
             }
+            newHashEntry = Math.abs(newHashEntry);
             String shortUrl = BASE_URL+newHashEntry;
 
             Url newEntry = new Url(shortUrl, url,newHashEntry);
@@ -71,5 +73,17 @@ public class UrlShortenerService {
         responseMap.put("DESCRIPTION","Success");
         responseMap.put("DATA", urls);
         return responseMap;
+    }
+
+    public ModelAndView redirectUrl(Long shortKey) {
+        String redirecturl;
+        if(urlShortenerRepository.existsByShortKey(shortKey)){
+           Url entry = urlShortenerRepository.findByShortKey(shortKey);
+           redirecturl = entry.getLongUrl();
+        }
+        else{
+            redirecturl = "github.com/Muzamil-Nawaz";
+        }
+        return new ModelAndView(new RedirectView(redirecturl));
     }
 }

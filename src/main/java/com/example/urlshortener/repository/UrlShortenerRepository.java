@@ -18,6 +18,10 @@ public interface UrlShortenerRepository extends JpaRepository<Url, String> {
 
 
 
+    public Url findByShortKey(Long shortKey);
+
+
+
 
     public Boolean existsByShortKey(Long shortKey);
 }

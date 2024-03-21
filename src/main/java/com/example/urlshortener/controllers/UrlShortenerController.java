@@ -30,8 +30,8 @@ public class UrlShortenerController {
         return urlShortenerService.getAllUrls();
     }
 
-//    @GetMapping("/{shortUrl}")
-//    public ModelAndView redirectUrl(@PathParam("shortUrl") String url){
-//        return urlShortenerService.redirectUrl(url);
-//    }
+    @GetMapping("/{shortKey}")
+    public ModelAndView redirectUrl(@PathVariable Long shortKey){
+        return urlShortenerService.redirectUrl(shortKey);
+    }
 }
