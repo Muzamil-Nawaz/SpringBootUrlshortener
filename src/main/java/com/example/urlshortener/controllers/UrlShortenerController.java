@@ -25,6 +25,11 @@ public class UrlShortenerController {
         return urlShortenerService.deleteShortenUrl(url);
     }
 
+    @GetMapping("/urls")
+    public Map getAllUrls(){
+        return urlShortenerService.getAllUrls();
+    }
+
 //    @GetMapping("/{shortUrl}")
 //    public ModelAndView redirectUrl(@PathParam("shortUrl") String url){
 //        return urlShortenerService.redirectUrl(url);

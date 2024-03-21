@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -63,4 +64,12 @@ public class UrlShortenerService {
         return responseMap;
     }
 
+    public Map getAllUrls() {
+        Map responseMap = new HashMap();
+        List<Url> urls = urlShortenerRepository.findAll();
+        responseMap.put("STATUS", "200");
+        responseMap.put("DESCRIPTION","Success");
+        responseMap.put("DATA", urls);
+        return responseMap;
+    }
 }
