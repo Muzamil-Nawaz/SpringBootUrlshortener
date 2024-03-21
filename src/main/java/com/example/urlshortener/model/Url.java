@@ -17,6 +17,38 @@ public class Url {
     String longUrl;
 
 
+    @Column
+    Long shortKey;
 
+    public Url(){}
 
+    public Url(String shortUrl, String longUrl, Long shortKey) {
+        this.shortUrl = shortUrl;
+        this.longUrl = longUrl;
+        this.shortKey = shortKey;
+    }
+
+    public String getShortUrl() {
+        return shortUrl;
+    }
+
+    public void setShortUrl(String shortUrl) {
+        this.shortUrl = shortUrl;
+    }
+
+    public String getLongUrl() {
+        return longUrl;
+    }
+
+    public void setLongUrl(String longUrl) {
+        this.longUrl = longUrl;
+    }
+
+    public Long getShortKey() {
+        return shortKey;
+    }
+
+    public void setShortKey(Long shortKey) {
+        this.shortKey = shortKey;
+    }
 }
